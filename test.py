@@ -33,6 +33,16 @@ for obj in mom.children_and_pets:
     being = getattr(obj, key)
     if key == 'child':
         for interest in being.interests:
-            print interest.WhichOneof('hobby'), interest.progamming_language, interest.sport
+            which_hobby = interest.WhichOneof('hobby')
+            lang = interest.progamming_language
+            sport = interest.sport
+            print "Name: %s \nWhich Hobby: %s" %(being.name, which_hobby)
+            print "\tprogramming_language: %s" %(lang)
+            print "\tsport: %s" %(sport)
     if key == 'pet':
-    	print being.WhichOneof('animal'), being.dog, being.cat
+    	which_animal = being.WhichOneof('animal')
+    	dog = being.dog
+    	cat = being.cat
+    	print "Name: %s \nWhich Animal: %s" %(being.name, which_animal)
+    	print "\tis a dog: %s" %(dog)
+    	print "\tis a cat: %s" %(cat)
