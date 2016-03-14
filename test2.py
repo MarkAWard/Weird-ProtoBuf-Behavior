@@ -22,7 +22,10 @@ mom = Parent()
 mom.name = "Mom"
 for being in beings:
     obj = mom.children_and_pets.add()
-    eval("obj."+being.__class__.__name__.lower()).MergeFrom(being)
+    if being.__class__.__name__.lower() == 'child':
+        obj.child.MergeFrom(being)
+    else:
+        obj.pet.MergeFrom(being)
 print mom
 
 for obj in mom.children_and_pets:
@@ -37,9 +40,9 @@ for obj in mom.children_and_pets:
             print "\tprogramming_language: %s" %(lang)
             print "\tsport: %s" %(sport)
     if key == 'pet':
-    	which_animal = being.WhichOneof('animal')
-    	dog = being.dog
-    	cat = being.cat
-    	print "Name: %s \nWhich Animal: %s" %(being.name, which_animal)
-    	print "\tis a dog: %s" %(dog)
-    	print "\tis a cat: %s" %(cat)
+        which_animal = being.WhichOneof('animal')
+        dog = being.dog
+        cat = being.cat
+        print "Name: %s \nWhich Animal: %s" %(being.name, which_animal)
+        print "\tis a dog: %s" %(dog)
+        print "\tis a cat: %s" %(cat)
