@@ -5,19 +5,16 @@ matt.name = "Matt"
 interest = matt.interests.add()
 interest.rating = 5
 interest.sport = "quidditch"
-print matt
 
 mark = Child()
 mark.name = "Mark"
 interest = mark.interests.add()
 interest.rating = 5
 interest.progamming_language = "python"
-print mark
 
 bucky = Pet()
 bucky.name = "Bucky"
 bucky.dog = True
-print bucky
 
 beings = [matt, mark, bucky]
 
