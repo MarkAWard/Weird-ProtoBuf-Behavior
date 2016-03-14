@@ -1,5 +1,7 @@
 # Weird-ProtoBuf-Behavior
 
+TLDR; Using protobuf v2.6.1 WhichOneof does not work after MergeFrom/CopyFrom. Fixed in more recent verison. Found closed issue https://github.com/google/protobuf/issues/147
+
 Originally, I believed there was in issue having nested `oneof` fields in a message that caused `WhichOneOf` to return `None` for the inner message when checking which field is set. Turns out that the issue is not the nesting of messages with `oneof` fields but rather how that inner message gets initialized. 
 
 When initializing a message within another message, you cannot use simple assignment of a pre-initailzed object to a nested message. This would throw an error like `AttributeError: Assignment not allowed to composite field "nested_message" in protocol message object.` You would have to assign to each field in that nested message, but a better way is to use one of the provided instance methods to initialize that nested message from an object you may alredy have such as `MergeFrom` or `ParseFromString`. `MergeFrom` is nice as you can hand it a protobuf instance and will set the attributes of the object it was called from, and you **almost** have identically functioning objects. `ParseFromString` sets the current objects attributes from a serialized protobuf that you might get from `SerializeToString`.
