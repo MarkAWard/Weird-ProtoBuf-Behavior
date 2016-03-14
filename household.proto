@@ -1,0 +1,41 @@
+package models;
+
+message Parent {
+	
+	required string name = 1;
+	repeated ChildOrPet children_and_pets = 2;
+
+	message ChildOrPet {
+		oneof child_or_pet {
+			Child child = 1;
+			Pet pet = 2;
+		}
+	}
+
+}
+
+message Child {
+	
+	required string name = 1;
+	repeated Interest interests = 2;	
+
+}
+
+message Interest {
+
+	required int32 rating = 1;
+	oneof hobby {
+		string progamming_language = 2;
+		string sport = 3;
+	}
+
+}
+
+message Pet {
+	
+	required string name = 1;
+	oneof animal {
+		bool dog = 2;
+		bool cat = 3;
+	}
+}
